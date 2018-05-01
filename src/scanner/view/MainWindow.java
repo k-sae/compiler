@@ -1,23 +1,22 @@
 package scanner.view;
 
 import javafx.geometry.Pos;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
 import javafx.scene.layout.VBox;
+import org.fxmisc.flowless.VirtualizedScrollPane;
+import org.fxmisc.richtext.*;
 
 public class MainWindow extends VBox {
 
     private NavBar navBar;
     private ToolBar toolBar;
-    private EditableText editableText;
-    private ScrollPane scrollPane;
+    private CodeArea codeArea;
 
     public MainWindow(){
 
         navBar = new NavBar();
         toolBar = new ToolBar();
-        editableText = new EditableText();
-        scrollPane = new ScrollPane(editableText);
+        codeArea = new CodeArea();
 
         setLayout();
     }
@@ -26,10 +25,10 @@ public class MainWindow extends VBox {
         setAlignment(Pos.TOP_CENTER);
         setSpacing(20);
 
-        scrollPane.setFitToWidth(true);
-        scrollPane.setFitToHeight(true);
+        codeArea.setParagraphGraphicFactory(LineNumberFactory.get(codeArea));
+        codeArea.setStyle("-fx-font-family: Source Code Pro; -fx-font-size: 14pt;");
 
-        getChildren().addAll(navBar, toolBar, scrollPane, new Separator());
+        getChildren().addAll(navBar, toolBar, new VirtualizedScrollPane<>(codeArea), new Separator());
 
     }
 
