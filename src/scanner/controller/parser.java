@@ -1,5 +1,6 @@
 package scanner.controller;
 
+import scanner.model.Dictionary;
 import scanner.model.ScannerOutput;
 
 import java.util.ArrayList;
@@ -26,71 +27,19 @@ public class parser
                 //TODO
                 // pass the last_delimiter and index -1 to matcher
             }
-            else if(isAssign(current))
-            {
-                //TODO
-                // pass the before the equal to matcher
-                // add assign as token
-            }
-            else if (isArithmetic(current))
-            {
-                //TODO
-                // pass the before the equal to matcher
-                // add assign as token
-            }
-            else if(isRelational(current))
-            {
-                //TODO
-                // pass the before the equal to matcher
-                // add assign as token
-            }
-            else if(isAccess(current))
-            {
-                //TODO
-                // pass the before the equal to matcher
-                // add assign as token
-            }
-            else if(isBraces(current))
-            {
-
-            }
-            else if (isQuotation(current))
-            {
-
-            }
 
         }
         return scannerOutputs;
     }
-
-    private boolean isQuotation(char current) {
-        return true;
-    }
-
-    private boolean isRelational(char c) {
-        return true;
-    }
-
-    private boolean isArithmetic(char c) {
-        return true;
-    }
-    // dot operator
-    private boolean isAccess(char c){
-        return true;
-    }
-
-    private boolean isBraces(char c){
-        return true;
-    }
-
     //TODO
 
     private boolean isDelimiter(char c)
     {
-        return c == '\n' || c == ';';
-    }
-    private boolean isAssign(char c)
-    {
-        return true;
+        for (int i = 0; i < Dictionary.delimiters.length; i++) {
+            if (c == Dictionary.delimiters[i])
+                return true;
+
+        }
+        return false;
     }
 }
