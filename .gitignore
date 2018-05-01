@@ -5,6 +5,7 @@
 .idea/
 # Package Files #
 *.jar
+!richtextfx-fat-0.9.0.jar
 *.war
 *.ear
 
