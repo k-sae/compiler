@@ -27,7 +27,7 @@ public class Dictionary {
         lexemes.add(new Lexeme(Keyword._Folp, Tokens._String));
         lexemes.add(new Lexeme(Keyword._Shrk, Tokens._Float));
         lexemes.add(new Lexeme(Keyword._Derp, Tokens._SFloat));
-        lexemes.add(new Lexeme(Keyword._EQl, Tokens._void));
+        lexemes.add(new Lexeme(Keyword._EQl, Tokens._Void));
         lexemes.add(new Lexeme(Keyword._Bplo, Tokens._Boolean));
         lexemes.add(new Lexeme(Keyword._Spt,""));
         lexemes.add(new Lexeme(Keyword._DpiWhen,Tokens._Loop));
@@ -36,7 +36,7 @@ public class Dictionary {
         lexemes.add(new Lexeme(Keyword._SEPK,Tokens._Struct));
         lexemes.add(new Lexeme(Keyword._ZQe,Tokens._Switch));
         lexemes.add(new Lexeme(Keyword._KLO,Tokens._Switch));
-        lexemes.add(new Lexeme(Keyword._pero,Tokens._Stat_Statement));
+        lexemes.add(new Lexeme(Keyword._Pero,Tokens._Stat_Statement));
         lexemes.add(new Lexeme(Keyword._Fine,Tokens._End_Statement));
         lexemes.add(new Lexeme(Keyword._add,Tokens._Arithmetic_Operation));
         lexemes.add(new Lexeme(Keyword._subtract,Tokens._Arithmetic_Operation));
