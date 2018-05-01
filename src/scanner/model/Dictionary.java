@@ -13,6 +13,8 @@ import java.util.ArrayList;
 public class Dictionary {
     private static Dictionary instance;
     private ArrayList<Lexeme> lexemes;
+    private static final char[] delimiters = {'\n', ';', '=', '+', '-', '*', '/',
+            '&', '|', '~', '!', '.', '{', '{', ','};
     private Dictionary()
     {
         lexemes = new ArrayList<>();
@@ -23,6 +25,10 @@ public class Dictionary {
 
     public ArrayList<Lexeme> getLexemes() {
         return lexemes;
+    }
+
+    public static char[] getDelimiters() {
+        return delimiters;
     }
 
     //get single instance for this class
