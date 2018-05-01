@@ -19,13 +19,13 @@ public class Main extends Application{
 
     public static void main(String[] args) {
 	// write your code here
-        Parser parser = new Parser("test=test;;test==;test;==;=;\n3{4}\n3344<=4;;54");
+        Parser parser = new Parser("test=test;;test==;test;==;=;/3{4}/3344<=4;;54");
         ArrayList<ScannerOutput> scannerOutputs =  parser.parse();
         for (ScannerOutput scannerOutput: scannerOutputs
              ) {
             System.out.println(scannerOutput.lexeme +  ":\t" + scannerOutput.token);
         }
-//        System.exit(0);
+        System.exit(0);
         launch(args);
 
     }

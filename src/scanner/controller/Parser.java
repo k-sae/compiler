@@ -23,9 +23,11 @@ public class Parser
         int last_delimiter = 0; // hold the index of the word
         Matcher matcher = new Matcher(document);
         boolean operatorFlag = false;
+        boolean delimiterFlag = false;
         for (int i = 0; i < document.length(); i++) {
             current = document.charAt(i);
             if (current == '\n') line_count++;
+            if (i == last_delimiter) continue;
             if (isOperator(current) && !operatorFlag){
                 //TODO
                 // pass the last_delimiter and index -1 to Matcher
@@ -38,11 +40,20 @@ public class Parser
                 scannerOutputs.add(matcher.match(last_delimiter, i, line_count));
                 operatorFlag = false;
                 last_delimiter = i;
+                if (isDelimiter(current)) delimiterFlag = true;
             }
             else if (isDelimiter(current)) {
                 scannerOutputs.add(matcher.match(last_delimiter, i, line_count));
+                delimiterFlag = true;
                 last_delimiter = i;
             }
+            if (delimiterFlag && !isDelimiter(current) && i != last_delimiter)
+            {
+                scannerOutputs.add(matcher.match(last_delimiter, i, line_count));
+                delimiterFlag = false;
+                last_delimiter = i;
+            }
+
 
 
         }
