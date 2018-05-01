@@ -16,6 +16,7 @@ public class Dictionary {
     private Dictionary()
     {
         lexemes = new ArrayList<>();
+        //TODO Hazem
         lexemes.add(new Lexeme(Keyword._bluePrint, Tokens._class));
 
     }
@@ -33,9 +34,11 @@ public class Dictionary {
 
     private static class Keyword{
         public static final String _bluePrint = "BluePrint";
+        //TODO Hazem
     }
     private static class Tokens{
         public static final String _class = "Class";
+        //TODO Hazem
     }
     public class Lexeme{
         public final String keyword;
