@@ -13,8 +13,9 @@ import java.util.ArrayList;
 public class Dictionary {
     private static Dictionary instance;
     private ArrayList<Lexeme> lexemes;
-    public static final char[] delimiters = {'\n', ';', '=', '+', '-', '*', '/',
-            '&', '|', '~', '!', '.', '{', '{', ','};
+    public static final char[] delimiters = {'\n', ';', '+', '-', '*', '/', ',', '~', '.'
+    };
+    public static final char[] operators = { '&', '|' , '!', '{', '}' , '<', '>', '='};
     private Dictionary()
     {
         lexemes = new ArrayList<>();
