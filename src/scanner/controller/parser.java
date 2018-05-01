@@ -1,6 +1,6 @@
 package scanner.controller;
 
-import scanner.model.Token;
+import scanner.model.ScannerOutput;
 
 import java.util.ArrayList;
 
@@ -12,9 +12,9 @@ public class parser
         this.document = document;
 
     }
-    public ArrayList<Token> parse()
+    public ArrayList<ScannerOutput> parse()
     {
-        ArrayList<Token> tokens = new ArrayList<>();
+        ArrayList<ScannerOutput> scannerOutputs = new ArrayList<>();
         char current;
         int line_count = 1;
         // hold the index of the word
@@ -60,7 +60,7 @@ public class parser
             }
 
         }
-        return tokens;
+        return scannerOutputs;
     }
 
     private boolean isQuotation(char current) {
