@@ -6,12 +6,9 @@ import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import scanner.model.ScannerOutput;
 import scanner.view.MainWindow;
-import scanner.view.MenuBar;
-import scanner.view.ResultWindow;
 import scanner.model.Dictionary;
 
 import java.util.ArrayList;
@@ -20,7 +17,6 @@ import java.util.ArrayList;
 public class Main extends Application{
 
     private static Stage stage;
-    private static BorderPane borderPane;
 
     public static void main(String[] args) {
 	// write your code here
@@ -35,7 +31,7 @@ public class Main extends Application{
              ) {
             System.out.println(scannerOutput.lexeme +  ":\t" + scannerOutput.token + "\tLine: " + scannerOutput.lineNo);
         }
-        System.exit(0);
+//        System.exit(0);
         launch(args);
 
     }
@@ -45,18 +41,12 @@ public class Main extends Application{
 
         stage = primaryStage;
         stage.setTitle("Editor");
-
-        MenuBar menuBar = new MenuBar();
-        MainWindow mainWindow = new MainWindow();
-        ResultWindow resultWindow = new ResultWindow();
-
-        borderPane = new BorderPane();
-        borderPane.setTop(menuBar);
-        borderPane.setCenter(mainWindow);
-        borderPane.setBottom(resultWindow);
-
-        stage.setScene(new Scene(borderPane,960,600));
-        stage.setMaximized(true);
+        Parent root = new MainWindow();
+        ScrollPane scrollPane = new ScrollPane(root);
+        scrollPane.setFitToWidth(true);
+        scrollPane.setFitToHeight(true);
+        stage.setScene(new Scene(scrollPane,960,600));
+        stage.setFullScreen(true);
         // stage.getIcons().add(new Image("file:img/icon.jpg"));
         stage.show();
 
