@@ -8,7 +8,7 @@ public class ParserOutPut {
     public String Action;
     public int  lineNum;
     public boolean isTerminal;
-    public boolean isMached;
+    public boolean isMatched;
     public boolean isAccepted;
     public boolean isError;
 }
