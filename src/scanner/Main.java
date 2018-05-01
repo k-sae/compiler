@@ -31,7 +31,7 @@ public class Main extends Application{
         for (ScannerOutput scannerOutput: scannerOutputs) {
             System.out.println(scannerOutput.lexeme +  ":\t" + scannerOutput.token + "\tLine: " + scannerOutput.lineNo);
         }
-        System.exit(0);
+//        System.exit(0);
         launch(args);
 
     }
