@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class Dictionary {
     private static Dictionary instance;
     private ArrayList<Lexeme> lexemes;
-    public static final char[] delimiters = {'\n', ';', '+', '-', '*', '/', ',', '~', '.'};
+    public static final char[] delimiters = {'\n', ';', '+', '-', '*', '/', ',', '~', '.', ' ', '\t'};
     public static final char[] operators = { '&', '|' , '!', '{', '}' , '<', '>', '='};
     private Dictionary()
     {
@@ -64,6 +64,9 @@ public class Dictionary {
         lexemes.add(new Lexeme(Keyword._double_quote,Tokens._Quotation_Mark));
         lexemes.add(new Lexeme(Keyword._Having,Tokens._Inclusion));
         lexemes.add(new Lexeme(Keyword._delimiter,Tokens._delimiter));
+        lexemes.add(new Lexeme(Keyword._newLine,Tokens._delimiter));
+        lexemes.add(new Lexeme(Keyword._space,Tokens._delimiter));
+        lexemes.add(new Lexeme(Keyword._tab,Tokens._delimiter));
     }
 
     public ArrayList<Lexeme> getLexemes() {
@@ -123,6 +126,9 @@ public class Dictionary {
         public static  final String _singl_quote="\'";
         public static  final String _Having="Having";
         public static  final String _delimiter=";";
+        public static  final String _newLine="\n";
+        public static  final String _space=" ";
+        public static  final String _tab="\t";
 
 
         //TODO Hazem

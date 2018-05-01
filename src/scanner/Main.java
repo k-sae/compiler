@@ -1,5 +1,6 @@
 package scanner;
 
+import scanner.controller.Optimizer;
 import scanner.controller.Parser;
 import javafx.application.Application;
 import javafx.scene.Parent;
@@ -19,11 +20,16 @@ public class Main extends Application{
 
     public static void main(String[] args) {
 	// write your code here
-        Parser parser = new Parser("test=test;;test==;test;==;=;/3{4}/3344<=4;;54");
+        Parser parser = new Parser(new Optimizer().Optimize("<^ test comment\n" +
+                "\n" +
+                "continue\n" +
+                "^>test\n" +
+                "^^line comment 1\n" +
+                "5test=test;;_test==;test;==;=;/3{4}/3344<=4;;54 ^^ line comment 2"));
         ArrayList<ScannerOutput> scannerOutputs =  parser.parse();
         for (ScannerOutput scannerOutput: scannerOutputs
              ) {
-            System.out.println(scannerOutput.lexeme +  ":\t" + scannerOutput.token);
+            System.out.println(scannerOutput.lexeme +  ":\t" + scannerOutput.token + "\tLine: " + scannerOutput.lineNo);
         }
         System.exit(0);
         launch(args);
