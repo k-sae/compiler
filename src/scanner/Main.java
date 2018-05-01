@@ -6,8 +6,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.stage.Stage;
+import scanner.model.ScannerOutput;
 import scanner.view.MainWindow;
 import scanner.model.Dictionary;
+
+import java.util.ArrayList;
 
 
 public class Main extends Application{
@@ -16,10 +19,13 @@ public class Main extends Application{
 
     public static void main(String[] args) {
 	// write your code here
-        Parser parser = new Parser("test=test;;\ntest==;test;==;=;\n3{4}\n3344<=4;;54");
-        parser.parse();
-
-        System.out.println(Dictionary.getDictionary().getLexemes().get(0).keyword);
+        Parser parser = new Parser("test=test;;test==;test;==;=;\n3{4}\n3344<=4;;54");
+        ArrayList<ScannerOutput> scannerOutputs =  parser.parse();
+        for (ScannerOutput scannerOutput: scannerOutputs
+             ) {
+            System.out.println(scannerOutput.lexeme +  ":\t" + scannerOutput.token);
+        }
+//        System.exit(0);
         launch(args);
 
     }

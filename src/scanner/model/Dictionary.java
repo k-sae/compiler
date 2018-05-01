@@ -13,8 +13,7 @@ import java.util.ArrayList;
 public class Dictionary {
     private static Dictionary instance;
     private ArrayList<Lexeme> lexemes;
-    public static final char[] delimiters = {'\n', ';', '+', '-', '*', '/', ',', '~', '.'
-    };
+    public static final char[] delimiters = {'\n', ';', '+', '-', '*', '/', ',', '~', '.'};
     public static final char[] operators = { '&', '|' , '!', '{', '}' , '<', '>', '='};
     private Dictionary()
     {
@@ -64,6 +63,7 @@ public class Dictionary {
         lexemes.add(new Lexeme(Keyword._singl_quote,Tokens._Quotation_Mark));
         lexemes.add(new Lexeme(Keyword._double_quote,Tokens._Quotation_Mark));
         lexemes.add(new Lexeme(Keyword._Having,Tokens._Inclusion));
+        lexemes.add(new Lexeme(Keyword._delimiter,Tokens._delimiter));
     }
 
     public ArrayList<Lexeme> getLexemes() {
@@ -121,7 +121,8 @@ public class Dictionary {
         public static  final String _seop_acess=".";
         public static  final String _double_quote="\"";
         public static  final String _singl_quote="\'";
-        public static  final String _Having="Having"; 
+        public static  final String _Having="Having";
+        public static  final String _delimiter=";";
 
 
         //TODO Hazem
@@ -153,6 +154,7 @@ public class Dictionary {
         public static  final String _Constant="Constant";
         public static  final String _Quotation_Mark="Quotation Mark";
         public static  final String _Inclusion="Inclusion";
+        public static  final String _delimiter="delimiter";
         //TODO Hazem
     }
     public class Lexeme{

@@ -29,23 +29,25 @@ public class Parser
             if (isOperator(current) && !operatorFlag){
                 //TODO
                 // pass the last_delimiter and index -1 to Matcher
-                matcher.match(last_delimiter, i, line_count);
+                scannerOutputs.add(matcher.match(last_delimiter, i, line_count));
                 operatorFlag = true;
                 last_delimiter = i;
             }
             else if (!isOperator(current) && operatorFlag)
             {
-                matcher.match(last_delimiter, i, line_count);
+                scannerOutputs.add(matcher.match(last_delimiter, i, line_count));
                 operatorFlag = false;
                 last_delimiter = i;
             }
             else if (isDelimiter(current)) {
-                matcher.match(last_delimiter, i, line_count);
+                scannerOutputs.add(matcher.match(last_delimiter, i, line_count));
                 last_delimiter = i;
             }
 
+
         }
-        matcher.match(last_delimiter, document.length(), line_count);
+        scannerOutputs.add(matcher.match(last_delimiter, document.length(), line_count));
+
         return scannerOutputs;
     }
     //TODO

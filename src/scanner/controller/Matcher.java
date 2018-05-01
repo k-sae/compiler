@@ -3,6 +3,8 @@ package scanner.controller;
 import scanner.model.Dictionary;
 import scanner.model.ScannerOutput;
 
+import java.util.ArrayList;
+
 public class Matcher {
     private final String document;
 
@@ -19,25 +21,43 @@ public class Matcher {
                 return new ScannerOutput(lexeme.keyword, lexeme.token, true, line_count);
         }
         if (isIdentifier(start, end))
-        return new ScannerOutput(getLexeme(start, end), "IDENTIFIER" , true, line_count);
+            return new ScannerOutput(getLexeme(start, end), "IDENTIFIER" , true, line_count);
+        else if (isNumber(start, end))
+            return new ScannerOutput(getLexeme(start, end), "Constant" , true, line_count);
         return new ScannerOutput(getLexeme(start, end), "Error" , false, line_count);
     }
     private boolean isMatched(int start, int end, String key)
     {
+        if (end -start != key.length()) return false;
         for (int i = start, j =0; i < end && j < key.length(); i++, j++) {
-            if (document.charAt(i) != document.charAt(j)) return false;
+            if (document.charAt(i) != key.charAt(j)) return false;
         }
          return true;
     }
+    //TODO later
+//    private boolean isMatched(int start, int end)
+//    {
+//        Dictionary dictionary = Dictionary.getDictionary();
+//        for (int i = 0; i < dictionary.getLexemes().size(); i++) {
+//
+//        }
+//    }
     private boolean isIdentifier(int start, int end)
     {
-        if (!isCharacter(document.charAt(start))) return false;
+        if (!isCharacter(document.charAt(start)))
+            return false;
         for (int i = start; i < end; i++) {
-            if (!isCharacter(document.charAt(i)) || !isDigit(document.charAt(i))) return false;
+            if (!isCharacter(document.charAt(i)) && !isDigit(document.charAt(i))) return false;
         }
         return true;
     }
-
+    private boolean isNumber(int start, int end)
+    {
+        for (int i = start; i < end; i++) {
+            if (!isDigit(document.charAt(i))) return false;
+        }
+        return true;
+    }
     private boolean isCharacter(char c)
     {
         int asciiVal = ((int) c);
