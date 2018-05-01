@@ -20,18 +20,15 @@ public class Main extends Application{
 
     public static void main(String[] args) {
 	// write your code here
-        Parser parser = new Parser(new Optimizer().Optimize("<^ test comment\n" +
-                "\n" +
-                "continue\n" +
-                "^>test\n" +
-                "^^line comment 1\n" +
-                "5test=test;;_test==;test;==;=;/3{4}/3344<=4;;54 ^^ line comment 2"));
+        Parser parser = new Parser(new Optimizer().Optimize("\n" +
+                "5test=test;;_test==;test;===;=;/3{4}/3344<=4;;test\n" +
+                "45test;;;test\n"));
         ArrayList<ScannerOutput> scannerOutputs =  parser.parse();
         for (ScannerOutput scannerOutput: scannerOutputs
              ) {
             System.out.println(scannerOutput.lexeme +  ":\t" + scannerOutput.token + "\tLine: " + scannerOutput.lineNo);
         }
-//        System.exit(0);
+        System.exit(0);
         launch(args);
 
     }

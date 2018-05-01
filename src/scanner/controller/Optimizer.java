@@ -16,6 +16,7 @@ public class Optimizer {
         for (int i = 0; i < document.length() -1 ; i++) {
             current = document.charAt(i);
             next = document.charAt(i+1);
+            if (current == '\n') newDocument += '\n';
             if (current == '<' && next == '^') {
                 isBlockComment = true;
                 i+=1;
@@ -31,9 +32,9 @@ public class Optimizer {
             else if (isLineComment && current == '\n'){
                 isLineComment = false;
             }
-            else if ((!isBlockComment && !isLineComment) || current == '\n')
+            else if ((!isBlockComment && !isLineComment && current != '\n'))
                 newDocument += current;
         }
-        return newDocument ;
+        return newDocument  + document.charAt(document.length() - 1);
     }
 }

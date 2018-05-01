@@ -26,7 +26,8 @@ public class Parser
         boolean delimiterFlag = false;
         for (int i = 0; i < document.length(); i++) {
             current = document.charAt(i);
-            if (current == '\n') line_count++;
+            if (current == '\n')
+                line_count++;
             if (i == last_delimiter) continue;
             if (isOperator(current) && !operatorFlag){
                 //TODO
