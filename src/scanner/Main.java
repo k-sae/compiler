@@ -50,6 +50,7 @@ public class Main extends Application{
         borderPane.setTop(menuBar);
         borderPane.setCenter(mainWindow);
         borderPane.setBottom(resultWindow);
+        borderPane.setStyle("-fx-base: black; -fx-control-inner-background: #2b2b2b; -fx-background-color: #3c3f41;");
 
         stage.setScene(new Scene(borderPane,960,600));
         stage.setMaximized(true);
