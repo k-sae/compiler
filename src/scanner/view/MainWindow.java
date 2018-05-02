@@ -3,6 +3,7 @@ package scanner.view;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
@@ -12,14 +13,17 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import scanner.controller.Optimizer;
+import scanner.controller.Parser;
+import scanner.model.ScannerOutput;
 
 import java.util.ArrayList;
 
 public class MainWindow extends StackPane {
 
     private HBox hBox;
-    private VBox numBox;
-    private TextArea textArea;
+    private static VBox numBox;
+    private static TextArea textArea;
 
     public MainWindow(){
 
@@ -66,11 +70,17 @@ public class MainWindow extends StackPane {
 
     }
 
-    private void highlightLine(ArrayList<Integer> lines){
+    private static void highlightLine(int line){
 
-        for (int line:lines){
-            numBox.getChildren().get(line+1).setStyle("-fx-background-color: red;");
+        numBox.getChildren().get(line-1).setStyle("-fx-background-color: red;");
+
+    }
+    private static void removeHighlight(){
+
+        for (Node node:numBox.getChildren()) {
+            node.setStyle(null);
         }
+
     }
     private int lineCounts(String str){
 
@@ -82,6 +92,18 @@ public class MainWindow extends StackPane {
             }
         }
         return lineCount;
+    }
+
+    public static void scan(){
+        removeHighlight();
+        Parser parser = new Parser(new Optimizer().Optimize(textArea.getText()));
+        ArrayList<ScannerOutput> scannerOutputs =  parser.parse();
+        for (ScannerOutput scannerOutput: scannerOutputs) {
+            System.out.println(scannerOutput.lexeme +  ":\t" + scannerOutput.token + "\tLine: " + scannerOutput.lineNo);
+            if(scannerOutput.token.equals("Error")){
+                highlightLine(scannerOutput.lineNo);
+            }
+        }
     }
 
 }

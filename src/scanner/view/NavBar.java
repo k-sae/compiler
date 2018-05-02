@@ -42,6 +42,8 @@ public class NavBar extends MenuBar{
         MenuItem parse = new MenuItem("Parse");
         MenuItem compile = new MenuItem("Compile");
 
+        scan.setOnAction(event -> MainWindow.scan());
+
         run.getItems().addAll(scan, parse, compile);
 
         MenuItem about = new MenuItem("About");

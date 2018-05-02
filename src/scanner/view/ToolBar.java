@@ -27,6 +27,8 @@ public class ToolBar extends HBox{
         setAlignment(Pos.CENTER_RIGHT);
         setPadding(new Insets(10));
 
+        scanBtn.setOnAction(event -> MainWindow.scan());
+
         getChildren().addAll(scanBtn, parseBtn, compileBtn);
 
     }
