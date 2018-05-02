@@ -11,8 +11,7 @@ import javafx.stage.Stage;
 import scanner.model.ScannerOutput;
 import scanner.view.MainWindow;
 import scanner.view.MenuBar;
-import scanner.view.ResultWindow;
-import scanner.model.Dictionary;
+import scanner.view.OutputWindow;
 
 import java.util.ArrayList;
 
@@ -44,7 +43,7 @@ public class Main extends Application{
 
         MenuBar menuBar = new MenuBar();
         MainWindow mainWindow = new MainWindow();
-        ResultWindow resultWindow = new ResultWindow();
+        OutputWindow outputWindow = new OutputWindow();
 
         borderPane = new BorderPane();
         borderPane.setTop(menuBar);
@@ -53,7 +52,7 @@ public class Main extends Application{
         scrollPane.setFitToHeight(true);
         scrollPane.vvalueProperty().bind(mainWindow.heightProperty());
         borderPane.setCenter(scrollPane);
-        borderPane.setBottom(resultWindow);
+        borderPane.setBottom(outputWindow);
         borderPane.setStyle("-fx-base: black; -fx-control-inner-background: #2b2b2b; -fx-background-color: #3c3f41;");
 
         stage.setScene(new Scene(borderPane,960,600));

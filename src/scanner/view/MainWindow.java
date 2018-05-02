@@ -2,11 +2,9 @@ package scanner.view;
 
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -96,10 +94,12 @@ public class MainWindow extends StackPane {
 
     public static void scan(){
         removeHighlight();
+        OutputWindow.setText("");
         Parser parser = new Parser(new Optimizer().Optimize(textArea.getText()));
         ArrayList<ScannerOutput> scannerOutputs =  parser.parse();
         for (ScannerOutput scannerOutput: scannerOutputs) {
             System.out.println(scannerOutput.lexeme +  ":\t" + scannerOutput.token + "\tLine: " + scannerOutput.lineNo);
+            OutputWindow.appendText(scannerOutput.lexeme +  ":\t" + scannerOutput.token + "\tLine: " + scannerOutput.lineNo);
             if(scannerOutput.token.equals("Error")){
                 highlightLine(scannerOutput.lineNo);
             }

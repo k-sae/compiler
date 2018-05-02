@@ -3,11 +3,11 @@ package scanner.view;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.StackPane;
 
-public class ResultWindow extends StackPane{
+public class OutputWindow extends StackPane{
 
-    private TextArea textArea;
+    private static TextArea textArea;
 
-    public ResultWindow(){
+    public OutputWindow(){
 
         textArea = new TextArea();
 
@@ -19,9 +19,19 @@ public class ResultWindow extends StackPane{
         textArea.setWrapText(true);
         textArea.setEditable(false);
         textArea.setStyle("-fx-font-size: 14pt;");
-        textArea.setText("OUTPUT");
+        textArea.setText("OUTPUT\n");
 
         getChildren().add(textArea);
+
+    }
+    public static void setText(String str){
+
+        textArea.setText(str);
+
+    }
+    public static void appendText(String str){
+
+        textArea.appendText(str);
 
     }
 
