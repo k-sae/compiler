@@ -1,16 +1,15 @@
 package scanner.view;
 
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.StackPane;
-import org.fxmisc.flowless.VirtualizedScrollPane;
-import org.fxmisc.richtext.*;
 
 public class ResultWindow extends StackPane{
 
-    private CodeArea textArea;
+    private TextArea textArea;
 
     public ResultWindow(){
 
-        textArea = new CodeArea();
+        textArea = new TextArea();
 
         buildWindow();
 
@@ -20,9 +19,9 @@ public class ResultWindow extends StackPane{
         textArea.setWrapText(true);
         textArea.setEditable(false);
         textArea.setStyle("-fx-font-size: 14pt;");
-        textArea.replaceText("OUTPUT");
+        textArea.setText("OUTPUT");
 
-        getChildren().add(new VirtualizedScrollPane<>(textArea));
+        getChildren().add(textArea);
 
     }
 

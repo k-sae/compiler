@@ -35,13 +35,32 @@ public class Matcher {
          return true;
     }
     //TODO later
-//    private boolean isMatched(int start, int end)
-//    {
-//        Dictionary dictionary = Dictionary.getDictionary();
-//        for (int i = 0; i < dictionary.getLexemes().size(); i++) {
-//
-//        }
-//    }
+    public ScannerOutput match(int start, int end, int line_count, int flag)
+    {
+        ArrayList<Dictionary.Lexeme> lexemesToSearchIn = Dictionary.getDictionary().getLexemes();
+        ArrayList<Dictionary.Lexeme> nextLexemes = new ArrayList<>();
+        int base = start;
+        for (int i = start; i < end; i++) {
+            for (int j = 0; j < lexemesToSearchIn.size(); j++) {
+                int currentIndex = i - base;
+                Dictionary.Lexeme lexeme = lexemesToSearchIn.get(j);
+                if (lexeme.keyword.length() > currentIndex && document.charAt(i) == lexeme.keyword.charAt(currentIndex))
+                    nextLexemes.add(lexeme);
+            }
+            lexemesToSearchIn.clear();
+            lexemesToSearchIn.addAll(nextLexemes);
+            nextLexemes.clear();
+        }
+        if (lexemesToSearchIn.size() > 0)
+            return new ScannerOutput(lexemesToSearchIn.get(0).keyword,
+                    lexemesToSearchIn.get(0).token, true, line_count);
+        if (isIdentifier(start, end))
+            return new ScannerOutput(getLexeme(start, end), "IDENTIFIER" , true, line_count);
+        else if (isNumber(start, end))
+            return new ScannerOutput(getLexeme(start, end), "Constant" , true, line_count);
+        return new ScannerOutput(getLexeme(start, end), "Error" , false, line_count);
+
+    }
     private boolean isIdentifier(int start, int end)
     {
         if (!isCharacter(document.charAt(start)))

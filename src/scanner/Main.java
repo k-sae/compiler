@@ -23,13 +23,10 @@ public class Main extends Application{
     private static BorderPane borderPane;
 
     public static void main(String[] args) {
-        // write your code here
-        Parser parser = new Parser(new Optimizer().Optimize("<^ test comment\n" +
-                "\n" +
-                "continue\n" +
-                "^>test\n" +
-                "^^line comment 1\n" +
-                "5test=test;;_test==;test;==;=;/3{4}/3344<=4;;54 ^^ line comment 2"));
+	// write your code here
+        Parser parser = new Parser(new Optimizer().Optimize("\n" +
+                "5test=test;;_test==;test;===;=;/3{4}/3344<=4;;test\n" +
+                "45test;;;test\n"));
         ArrayList<ScannerOutput> scannerOutputs =  parser.parse();
         for (ScannerOutput scannerOutput: scannerOutputs) {
             System.out.println(scannerOutput.lexeme +  ":\t" + scannerOutput.token + "\tLine: " + scannerOutput.lineNo);
@@ -53,6 +50,7 @@ public class Main extends Application{
         borderPane.setTop(menuBar);
         borderPane.setCenter(mainWindow);
         borderPane.setBottom(resultWindow);
+        borderPane.setStyle("-fx-base: black; -fx-control-inner-background: #2b2b2b; -fx-background-color: #3c3f41;");
 
         stage.setScene(new Scene(borderPane,960,600));
         stage.setMaximized(true);

@@ -63,7 +63,7 @@ private ArrayList<ParserOutPut> outPuts;
                     return;
                 }
                 if (first.equals(inputTop)){// successful match
-                    outPut.isMached = true;
+                    outPut.isMatched = true;
                 }
                 else{// failed
                     outPut.isError = true;
