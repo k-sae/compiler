@@ -64,4 +64,11 @@ public class MainWindow extends StackPane {
 
     }
 
+    private void highlightLine(ArrayList<Integer> lines){
+
+        for (int line:lines){
+            numBox.getChildren().get(line+1).setStyle("-fx-background-color: red;");
+        }
+    }
+
 }
