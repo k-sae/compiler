@@ -48,7 +48,11 @@ public class Main extends Application{
 
         borderPane = new BorderPane();
         borderPane.setTop(menuBar);
-        borderPane.setCenter(mainWindow);
+        ScrollPane scrollPane = new ScrollPane(mainWindow);
+        scrollPane.setFitToWidth(true);
+        scrollPane.setFitToHeight(true);
+        scrollPane.vvalueProperty().bind(mainWindow.heightProperty());
+        borderPane.setCenter(scrollPane);
         borderPane.setBottom(resultWindow);
         borderPane.setStyle("-fx-base: black; -fx-control-inner-background: #2b2b2b; -fx-background-color: #3c3f41;");
 

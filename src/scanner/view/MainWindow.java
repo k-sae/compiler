@@ -11,6 +11,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 
 import java.util.ArrayList;
 
@@ -33,28 +34,29 @@ public class MainWindow extends StackPane {
         setPadding(new Insets(10, 0, 10, 0));
 
         numBox.setSpacing(5);
-        numBox.setPadding(new Insets(5));
-        numBox.getChildren().add(new Label("" + 1));
+        numBox.setPadding(new Insets(10));
+        Label label = new Label("" + 1);
+        label.setFont(Font.font(15));
+        numBox.getChildren().add(label);
 
         textArea.setStyle("-fx-font-family: Source Code Pro; -fx-font-size: 14pt;");
 
-        textArea.setOnKeyPressed(new EventHandler<KeyEvent>() {
+        textArea.setOnKeyTyped(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent keyEvent) {
-                System.out.println(textArea.getText().split("\n").length);
-                if (keyEvent.getCode() == KeyCode.ENTER) {
 
+                while (lineCounts(textArea.getText()) > numBox.getChildren().size()) {
                     Label label = new Label("" + (numBox.getChildren().size() + 1));
+                    label.setFont(Font.font(15));
                     label.setWrapText(true);
                     if(Integer.parseInt(label.getText()) >= 10)
                         label.setMinWidth(25);
                     numBox.getChildren().add(label);
-
-                }else if(keyEvent.getCode() == KeyCode.BACK_SPACE){
-                    if(numBox.getChildren().size() > 1) {
-                        numBox.getChildren().remove(numBox.getChildren().size() - 1);
-                    }
                 }
+
+                while (lineCounts(textArea.getText()) < numBox.getChildren().size())
+                    numBox.getChildren().remove(numBox.getChildren().size() - 1);
+
             }
         });
 
@@ -69,6 +71,17 @@ public class MainWindow extends StackPane {
         for (int line:lines){
             numBox.getChildren().get(line+1).setStyle("-fx-background-color: red;");
         }
+    }
+    private int lineCounts(String str){
+
+        int lineCount = 1;
+
+        for (int i = 0; i < str.length(); ++i) {
+            if (str.charAt(i) == '\n') {
+                ++lineCount;
+            }
+        }
+        return lineCount;
     }
 
 }
