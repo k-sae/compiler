@@ -17,19 +17,20 @@ public class Optimizer {
             current = document.charAt(i);
             next = document.charAt(i+1);
             if (current == '\n') newDocument += '\n';
+            if (!isLineComment && !isBlockComment)
             if (current == '<' && next == '^') {
                 isBlockComment = true;
-                i+=1;
-            }
-            else if (current == '^' && next == '>') {
-                isBlockComment = false;
                 i+=1;
             }
             else if (current == '^' && next == '^'){
                 isLineComment = true;
                 i+=1;
             }
-            else if (isLineComment && current == '\n'){
+            if (current == '^' && next == '>' && !isLineComment) {
+                isBlockComment = false;
+                i+=1;
+            }
+            else if (isLineComment && current == '\n' && !isBlockComment){
                 isLineComment = false;
             }
             else if ((!isBlockComment && !isLineComment && current != '\n'))
