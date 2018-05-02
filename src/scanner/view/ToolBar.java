@@ -28,6 +28,8 @@ public class ToolBar extends HBox{
         setPadding(new Insets(10));
 
         scanBtn.setOnAction(event -> MainWindow.scan());
+        parseBtn.setOnAction(event -> MainWindow.parse());
+        compileBtn.setOnAction(event -> MainWindow.compile());
 
         getChildren().addAll(scanBtn, parseBtn, compileBtn);
 

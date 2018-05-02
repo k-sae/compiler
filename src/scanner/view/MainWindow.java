@@ -106,4 +106,12 @@ public class MainWindow extends StackPane {
         }
     }
 
+    public static void parse(){
+
+    }
+
+    public static void compile(){
+
+    }
+
 }

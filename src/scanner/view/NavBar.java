@@ -43,6 +43,8 @@ public class NavBar extends MenuBar{
         MenuItem compile = new MenuItem("Compile");
 
         scan.setOnAction(event -> MainWindow.scan());
+        parse.setOnAction(event -> MainWindow.parse());
+        compile.setOnAction(event -> MainWindow.compile());
 
         run.getItems().addAll(scan, parse, compile);
 
