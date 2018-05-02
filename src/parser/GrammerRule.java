@@ -13,4 +13,9 @@ public class GrammerRule {
         ruleDefinition ="";
         ruleOutput = new ArrayList<String>();
     }
+
+    public GrammerRule(String ruleDefinition, ArrayList<String> ruleOutput) {
+        this.ruleDefinition = ruleDefinition;
+        this.ruleOutput = ruleOutput;
+    }
 }
