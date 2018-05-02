@@ -26,9 +26,6 @@ public class Parser
         boolean delimiterFlag = false;
         for (int i = 0; i < document.length(); i++) {
             current = document.charAt(i);
-            if (current == '\n')
-                line_count++;
-            if (i == last_delimiter) continue;
             if (isOperator(current) && !operatorFlag){
                 //TODO
                 // pass the last_delimiter and index -1 to Matcher
@@ -48,6 +45,9 @@ public class Parser
                 delimiterFlag = true;
                 last_delimiter = i;
             }
+            if (current == '\n')
+                line_count++;
+            if (i == last_delimiter) continue;
             if (delimiterFlag && !isDelimiter(current) && i != last_delimiter)
             {
                 scannerOutputs.add(matcher.match(last_delimiter, i, line_count));

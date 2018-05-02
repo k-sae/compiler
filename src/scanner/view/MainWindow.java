@@ -99,9 +99,16 @@ public class MainWindow extends StackPane {
         ArrayList<ScannerOutput> scannerOutputs =  parser.parse();
         for (ScannerOutput scannerOutput: scannerOutputs) {
             System.out.println(scannerOutput.lexeme +  ":\t" + scannerOutput.token + "\tLine: " + scannerOutput.lineNo);
-            OutputWindow.appendText(scannerOutput.lexeme +  ":\t" + scannerOutput.token + "\tLine: " + scannerOutput.lineNo);
+
             if(scannerOutput.token.equals("Error")){
                 highlightLine(scannerOutput.lineNo);
+                OutputWindow.appendText("Line " + scannerOutput.lineNo +
+                        " Error in Token Text: " + scannerOutput.lexeme + '\n');
+            }
+            else if (!scannerOutput.token.equals("delimiter")){
+                OutputWindow.appendText("Line " + scannerOutput.lineNo +
+                        ": Token Text: " + scannerOutput.lexeme +
+                        " Token Type: " + scannerOutput.token + '\n');
             }
         }
     }
